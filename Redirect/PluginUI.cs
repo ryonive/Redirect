@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Numerics;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Interface;
@@ -15,7 +15,6 @@ namespace Redirect {
 
         private Plugin Plugin { get; } = null!;
         private Configuration Configuration { get; } = null!;
-        private GameHooks GameHooks { get; } = null!;
         private Actions Actions { get; } = null!;
 
         private List<uint> Jobs => Actions.GetJobInfo();
@@ -26,10 +25,9 @@ namespace Redirect {
         private string search = string.Empty;
         private readonly string[] TargetOptions = { "Cursor", "UI Mouseover", "Model Mouseover", "Target", "Focus", "Target of Target", "Self", "Soft Target", "Chocobo", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>" };
 
-        public PluginUI(Plugin plugin, Configuration config, GameHooks hooks, Actions actions) {
+        public PluginUI(Plugin plugin, Configuration config, Actions actions) {
             Plugin = plugin;
             Configuration = config;
-            GameHooks = hooks;
             Actions = actions;
             Plugin.Interface.UiBuilder.Draw += Draw;
             Plugin.Interface.UiBuilder.OpenConfigUi += OnOpenConfig;
@@ -170,7 +168,7 @@ namespace Redirect {
             }
 
             var drawsize = size == default ? new Vector2(wrap.Width, wrap.Height) : size;
-            ImGui.Image(wrap.ImGuiHandle, drawsize);
+            ImGui.Image(wrap.Handle, drawsize);
         }
 
         private void DrawActions() {
