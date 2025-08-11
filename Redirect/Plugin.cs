@@ -30,7 +30,7 @@ namespace Redirect {
 
             Actions = new();
             Hooks = new(Configuration, Actions);
-            PluginUi = new(this, Configuration, Hooks, Actions);
+            PluginUi = new(this, Configuration, Actions);
 
             CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand) {
                 HelpMessage = "Opens the configuration menu"
