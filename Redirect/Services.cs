@@ -14,8 +14,6 @@ namespace Redirect {
 
         [PluginService] public static IDataManager DataManager { get; private set; } = null!;
 
-        [PluginService] public static ISigScanner SigScanner { get; private set; } = null!;
-
         [PluginService] public static IClientState ClientState { get; private set; } = null!;
 
         [PluginService] public static ITargetManager TargetManager { get; private set; } = null!;

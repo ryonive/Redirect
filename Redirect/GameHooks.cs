@@ -12,14 +12,10 @@ using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 namespace Redirect {
     internal class GameHooks : IDisposable {
 
-        private const int SprintID = 3;
-        private const int PotionID = 846;
         private const uint DefaultTarget = 0xE0000000;
-
         private Configuration Configuration { get; } = null!;
         private Actions Actions { get; } = null!;
         private static ITargetManager TargetManager => Services.TargetManager;
-        private static ISigScanner SigScanner => Services.SigScanner;
         private static IToastGui ToastGui => Services.ToastGui;
 
         private unsafe delegate bool TryActionDelegate(IntPtr tp, ActionType t, uint id, ulong target, uint param, uint origin, uint unk, Vector3* l);
