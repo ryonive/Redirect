@@ -61,13 +61,11 @@ namespace Redirect {
 
         private unsafe IGameObject? ResolvePlaceholder(string ph) {
             try {
-                var fw = FFXIVClientStructs.FFXIV.Client.System.Framework.Framework.Instance();
-                var ui = fw->UIModule;
-                var pm = ui->GetPronounModule();
+                var pm = PronounModule.Instance();
                 var p = (IntPtr)pm->ResolvePlaceholder(ph, 0, 0);
                 return Services.ObjectTable.CreateObjectReference(p);
             } catch (Exception ex){
-                Services.PluginLog.Error($"Unable to resolve pronoun ({ph}): {ex.Message}");
+                Services.PluginLog.Error($"Unable to resolve placeholder ({ph}): {ex.Message}");
                 return null;
             }
         }
